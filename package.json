@@ -1,11 +1,11 @@
 {
   "name": "aspnet-https-dev-proxy",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "A https proxy which reuses the ASP.NET SSL dev certificate",
   "repository": "https://github.com/stephtr/aspnet-https-dev-proxy.git",
   "author": "Stephan Troyer",
   "license": "GPL-3.0",
-  "bin": "./index.mjs",
+  "bin": "./index.js",
   "dependencies": {
     "commander": "^10.0.1",
     "http-proxy": "^1.18.1",
