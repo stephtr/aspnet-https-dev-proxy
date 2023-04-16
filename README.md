@@ -1,23 +1,28 @@
 # aspnet-https-dev-proxy
 
-A https proxy which reuses the ASP.NET SSL dev certificate.
+A HTTPS dev proxy that reuses the ASP.NET SSL development certificate.
+
+## Installation
+
+You can install `aspnet-https-dev-proxy` from the NPM registry using the following command: `npm install -D aspnet-https-dev-proxy`
 
 ## Usage
 
+You can start the aspnet-https-dev-proxy with the following command:
+
 `aspnet-https-dev-proxy --port 3000 --httpsPort 3001 --apiPort 5000`
 
-This proxy server (serving at `localhost:${httpsPort}`) maps incoming requests to the server running at `localhost:${port}`.
-In order to provide an https endpoint, the proxy server reuses the ASP.NET dev SSL certificate by exporting it to a local file.
+This will start the proxy server, which will be serving at localhost:${httpsPort}, and map incoming requests to the server running at localhost:${port}. Optionally, you can specify an apiPort to map incoming requests of the form /api/\* to a dedicated server running at localhost:${apiPort}.
 
-Optionally, the proxy server will map incoming requests of the form `/api/*` to a dedicated server running at `localhost:${apiPort}`.
-
-By supplying more arguments separated by `--`, a script will be executed as soon as the proxy server is started, for example by setting:
+You can also supply additional arguments separated by --, which will be executed as a script as soon as the proxy server is started. For example:
 
 `node runProxy.mjs --apiPort 5156 --port 3100 --httpsPort 3000 -- npm run next dev -p 3100`
 
+This will start proxy server and in addition also the NextJS dev server.
+
 ## Further information
 
-The SSL certificate gets exported to `~/.aspnet/https/proxy.pem/key` (Linux) or `%APPDATA%\ASP.NET\https\proxy.pem/key` (Windows), the same technique used by [dotnet's SPA templates](https://github.com/dotnet/spa-templates/blob/3c41fe26f7c51fc85fbc97b92871765467dd533c/src/content/React-CSharp/ClientApp/aspnetcore-https.js).
+The ASP.NET SSL dev certificate gets exported to `~/.aspnet/https/proxy.pem/key` (Linux) or `%APPDATA%\ASP.NET\https\proxy.pem/key` (Windows), the same technique used by [dotnet's SPA templates](https://github.com/dotnet/spa-templates/blob/3c41fe26f7c51fc85fbc97b92871765467dd533c/src/content/React-CSharp/ClientApp/aspnetcore-https.js).
 
 ## Changelog
 
