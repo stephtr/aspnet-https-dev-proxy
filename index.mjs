@@ -12,7 +12,7 @@ program
   .option("--apiPort <port>", "Port of the API server (optional)")
   .parse();
 
-const { apiPort, port: targetPort, httpsPort } = program.opts();
+const { apiPort, targetPort, httpsPort } = program.opts();
 const excessArgs = program.args;
 
 const baseFolder =
