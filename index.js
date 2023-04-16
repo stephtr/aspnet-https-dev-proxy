@@ -125,9 +125,17 @@ const { program } = require("commander");
 
     nextProcess.on("close", (code) => {
       console.log(`Command exited with code ${code}`);
+      server.close();
     });
 
-    process.on("SIGINT", () => nextProcess.kill("SIGINT")); // catch ctrl-c
-    process.on("SIGTERM", () => nextProcess.kill("SIGTERM")); // catch kill
+    process.on("SIGINT", () => {
+      server.close();
+      nextProcess.kill("SIGINT");
+    }); // catch ctrl-c
+    process.on("SIGTERM", () => {
+      server.close();
+      server.closeAllConnections();
+      nextProcess.kill("SIGTERM");
+    }); // catch kill
   }
 })();
