@@ -111,12 +111,15 @@ server.listen(httpsPort);
 console.log(`Listening on https://localhost:${httpsPort}`);
 
 if (excessArgs.length) {
-  const next = spawn(excessArgs[0], excessArgs.slice(1), {
+  const nextProcess = spawn(excessArgs[0], excessArgs.slice(1), {
     stdio: "inherit",
     shell: true,
   });
 
-  next.on("close", (code) => {
+  nextProcess.on("close", (code) => {
     console.log(`Command exited with code ${code}`);
   });
+
+  process.on("SIGINT", () => nextProcess.kill("SIGINT")); // catch ctrl-c
+  process.on("SIGTERM", () => nextProcess.kill("SIGTERM")); // catch kill
 }
