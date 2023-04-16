@@ -21,6 +21,6 @@ The SSL certificate gets exported to `~/.aspnet/https/proxy.pem/key` (Linux) or 
 
 ## Changelog
 
-### 0.1.0
+### 1.0.0
 
 - initial release
