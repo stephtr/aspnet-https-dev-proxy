@@ -6,6 +6,8 @@ A HTTPS dev proxy that reuses the ASP.NET SSL development certificate.
 
 You can install `aspnet-https-dev-proxy` from the NPM registry using the following command: `npm install -D aspnet-https-dev-proxy`
 
+If you haven't done already, you should trust the dev certificate by also executing `dotnet dev-certs https --trust`.
+
 ## Usage
 
 You can start the aspnet-https-dev-proxy with the following command:
